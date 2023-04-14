@@ -1,0 +1,29 @@
+﻿namespace Domain.Enums
+{
+    public enum CategoryType
+    {
+        BoşanmaAvukatı=0,
+        CezaAvukatı=1,
+        BorçAlacakAvukatı=2,
+        TazminatAvukatı=3,
+        MirasAvukatı=4,
+        İşçiİşverenAvukatı=5,
+        SigortaAvukatı=6,
+        BilişimAvukatı=7,
+        ŞirketveTicaretAvukatı=8,
+        ArabulucuAvukat=9,
+        UzlaştırmacıAvukat=10,
+        DoktorveHekimAvukatı=11,
+        EmlakveEmlakçıAvukatı=12,
+        İcraTakipAvukatı=13,
+        KamuİdariAvukat=14,
+        İflasAvukatı=15,
+        PatentMarkaAvukatı=16,
+        TrafikveKazaAvukatı=17,
+        UluslararasıHukukAvukatı=18,
+        VergiAvukatı=19,
+        TemyizAvukatı=20,
+        TüketiciAvukatı=21,
+        İstinafAvukatı=22
+    }
+}
