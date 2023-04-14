@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
+using Application.Common.Interfaces;
 
-namespace Infrastructure.Persistence
+namespace Infrastructure.Persistence.Contexts
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Client> Clients { get; set; }

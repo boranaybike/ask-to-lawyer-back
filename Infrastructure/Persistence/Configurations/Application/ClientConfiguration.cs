@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Configurations
+namespace Infrastructure.Persistence.Configurations.Application
 {
     public class ClientConfiguration : IEntityTypeConfiguration<Client>
     {
@@ -11,13 +11,13 @@ namespace Infrastructure.Persistence.Configurations
             // Id
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-                       
+
             // Relationships
-            builder.HasMany<Comment>(x => x.Comments)
+            builder.HasMany(x => x.Comments)
                 .WithOne(x => x.Client)
                 .HasForeignKey(x => x.ClientId);
-            // Relationships
-            builder.HasMany<Question>(x => x.Questions)
+
+            builder.HasMany(x => x.Questions)
                 .WithOne(x => x.Client)
                 .HasForeignKey(x => x.ClientId);
 

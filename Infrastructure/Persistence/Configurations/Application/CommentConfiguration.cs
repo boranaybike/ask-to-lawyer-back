@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Configurations
+namespace Infrastructure.Persistence.Configurations.Application
 {
     public class CommentConfiguration : IEntityTypeConfiguration<Comment>
     {
@@ -41,11 +41,11 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasIndex(x => x.IsDeleted);
 
             // Relationships
-            builder.HasOne<Client>(x => x.Client)
+            builder.HasOne(x => x.Client)
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.ClientId);
 
-            builder.HasOne<Lawyer>(x => x.Lawyer)
+            builder.HasOne(x => x.Lawyer)
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.LawyerId);
 

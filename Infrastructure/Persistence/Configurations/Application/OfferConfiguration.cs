@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Configurations
+namespace Infrastructure.Persistence.Configurations.Application
 {
-    public class QuestionConfiguration : IEntityTypeConfiguration<Question>
+    public class OfferConfiguration : IEntityTypeConfiguration<Offer>
     {
-        public void Configure(EntityTypeBuilder<Question> builder)
+        public void Configure(EntityTypeBuilder<Offer> builder)
         {
 
             //Category kaldı!!(list olduğu için)
@@ -14,18 +14,11 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            // Title
-            builder.Property(x => x.Title).IsRequired();
-            builder.Property(x => x.Title).HasMaxLength(100);
+            // Price
+            builder.Property(x => x.Price).IsRequired();
 
-            // Description
-            builder.Property(x => x.Description).IsRequired();
-
-            // MaxPrice
-            builder.Property(x => x.MaxPrice).IsRequired(false);
-
-            // MinPrice
-            builder.Property(x => x.MinPrice).IsRequired(false);
+            // IsAccepted
+            builder.Property(x => x.IsAccepted).IsRequired();
 
             // Common Fields
 
@@ -35,13 +28,6 @@ namespace Infrastructure.Persistence.Configurations
             // CreatedByUserId
             builder.Property(x => x.CreatedByUserId).IsRequired(false);
             builder.Property(x => x.CreatedByUserId).HasMaxLength(100);
-
-            // ModifiedOn
-            builder.Property(x => x.ModifiedOn).IsRequired(false);
-
-            // ModifiedByUserId
-            builder.Property(x => x.ModifiedByUserId).IsRequired(false);
-            builder.Property(x => x.ModifiedByUserId).HasMaxLength(100);
 
             // DeletedOn
             builder.Property(x => x.DeletedOn).IsRequired(false);
@@ -56,15 +42,19 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasIndex(x => x.IsDeleted);
 
             // Relationships
-            builder.HasOne<Client>(x => x.Client)
-                .WithMany(x => x.Questions)
-                .HasForeignKey(x => x.ClientId);
+            builder.HasOne(x => x.Lawyer)
+                .WithMany(x => x.Offers)
+                .HasForeignKey(x => x.LawyerId);
 
-            builder.HasMany<Offer>(x => x.Offers)
-                .WithOne(x => x.Question)
+            builder.HasOne(x => x.Question)
+                .WithMany(x => x.Offers)
                 .HasForeignKey(x => x.QuestionId);
 
-            builder.ToTable("Questions");
+            builder.HasOne(x => x.Answer)
+                .WithOne(x => x.Offer)
+                .HasForeignKey<Answer>(x => x.OfferId);
+
+            builder.ToTable("Offers");
         }
     }
 }
