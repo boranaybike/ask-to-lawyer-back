@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 
-namespace Infrastructure.Persistence
+namespace Infrastructure.Persistence.Contexts
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Client> Clients { get; set; }

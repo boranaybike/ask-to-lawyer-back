@@ -8,7 +8,7 @@ namespace Domain.Entities
         public int LawyerId { get; set; }
         public Question? Question { get; set; }
         public int QuestionId { get; set; }
-        public Answer Answer { get; set; }
+        public Answer? Answer { get; set; }
         public int AnswerId { get; set; }
         public int Price { get; set; }
         public bool IsAccepted { get; set; }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence.Configurations
+namespace Infrastructure.Persistence.Configurations.Application
 {
     public class AnswerConfiguration : IEntityTypeConfiguration<Answer>
     {
@@ -11,7 +11,7 @@ namespace Infrastructure.Persistence.Configurations
             // Id
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            
+
             // Title
             builder.Property(x => x.Title).IsRequired();
             builder.Property(x => x.Title).HasMaxLength(100);
@@ -51,9 +51,9 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasIndex(x => x.IsDeleted);
 
             // Relationships
-            builder.HasOne<Offer>(x => x.Offer)
-                .WithOne(x => x.Answer)
-                .HasForeignKey(x => x.OfferId); //hata veriyor
+            builder.HasOne(x => x.Offer)
+                .WithOne()
+                .HasForeignKey<Answer>(x => x.OfferId);
 
             builder.ToTable("Answers");
         }

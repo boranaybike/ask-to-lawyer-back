@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using Domain.Identity;
+
+namespace Domain.Entities
 {
     public class Lawyer: User
     {
