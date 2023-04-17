@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Answers\Commands\" />
-    <Folder Include="Features\Answers\Queries\" />
+    <Folder Include="Features\Answers\Commands\Add\" />
+    <Folder Include="Features\Answers\Commands\Delete\" />
+    <Folder Include="Features\Answers\Commands\Update\" />
+    <Folder Include="Features\Answers\Queries\GetAll\" />
+    <Folder Include="Features\Answers\Queries\GetById\" />
+    <Folder Include="Features\Clients\Commands\" />
+    <Folder Include="Features\Clients\Queries\" />
+    <Folder Include="Features\Comments\Commands\" />
+    <Folder Include="Features\Comments\Queries\" />
+    <Folder Include="Features\Lawyers\Commands\" />
+    <Folder Include="Features\Lawyers\Queries\" />
+    <Folder Include="Features\Offers\Queries\GetAll\" />
+    <Folder Include="Features\Offers\Queries\GetById\" />
     <Folder Include="Features\Questions\Queries\GetById\" />
   </ItemGroup>
 

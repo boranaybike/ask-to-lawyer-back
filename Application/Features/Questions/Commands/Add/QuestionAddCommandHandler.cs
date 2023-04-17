@@ -8,10 +8,10 @@ namespace Application.Features.Questions.Commands.Add
     public class QuestionAddCommandHandler : IRequestHandler<QuestionAddCommand, Response<int>>
     {
 
-        private readonly IApplicationDbContext _applicationDbContext;
+        private readonly IApplicationDbContext _context;
         public QuestionAddCommandHandler(IApplicationDbContext applicationDbContext)
         {
-            _applicationDbContext = applicationDbContext;
+            _context = applicationDbContext;
         }
 
         public async Task<Response<int>> Handle(QuestionAddCommand request, CancellationToken cancellationToken)
@@ -30,9 +30,9 @@ namespace Application.Features.Questions.Commands.Add
 
             };
 
-            await _applicationDbContext.Questions.AddAsync(question, cancellationToken);
+            await _context.Questions.AddAsync(question, cancellationToken);
 
-            await _applicationDbContext.SaveChangesAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return new Response<int>($"The new addres named \"{question.Title}\" was successfully added.", question.Id);
         }
