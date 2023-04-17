@@ -11,7 +11,7 @@
         public string? ModifiedByUserId { get; set; }
 
         public DateTimeOffset? DeletedOn { get; set; }
-        public string? DeletedByUserId { get; set; }
+        public int? DeletedByUserId { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

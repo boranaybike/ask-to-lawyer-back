@@ -3,7 +3,7 @@
     public interface IDeletedByEntity
     {
         DateTimeOffset? DeletedOn { get; set; }
-        string? DeletedByUserId { get; set; }
+        int? DeletedByUserId { get; set; }
 
         bool IsDeleted { get; set; }
     }
