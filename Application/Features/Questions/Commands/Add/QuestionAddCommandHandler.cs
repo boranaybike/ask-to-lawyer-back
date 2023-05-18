@@ -20,7 +20,7 @@ namespace Application.Features.Questions.Commands.Add
             {
                 Title = request.Title,
                 Description = request.Description,
-                Categories = request.Categories,
+                //Categories = request.Categories,
                 MaxPrice = request.MaxPrice,
                 MinPrice = request.MinPrice,
                 ClientId = request.ClientId,

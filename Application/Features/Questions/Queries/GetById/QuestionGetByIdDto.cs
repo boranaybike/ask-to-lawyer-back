@@ -1,6 +1,6 @@
-﻿namespace Application.Features.Questions.Queries.GetAll
+﻿namespace Application.Features.Questions.Queries.GetById
 {
-    public class QuestionGetAllDto
+    public class QuestionGetByIdDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -11,7 +11,6 @@
         public int ClientId { get; set; }
         public string ClientName { get; set; }
         public bool IsDeleted { get; set; }
-
 
     }
 }

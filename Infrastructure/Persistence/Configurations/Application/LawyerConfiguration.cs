@@ -24,10 +24,10 @@ namespace Infrastructure.Persistence.Configurations.Application
             builder.Property(x => x.Education).IsRequired(false);
 
             // AverageResponseTime
-            builder.Property(x => x.AverageResponseTime).IsRequired(false);
+            builder.Property(x => x.AverageResponseTime).IsRequired(true);
 
             // AverageRate
-            builder.Property(x => x.AverageRate).IsRequired(false);
+            builder.Property(x => x.AverageRate).IsRequired();
 
             // Relationships
             builder.HasMany(x => x.Comments)
