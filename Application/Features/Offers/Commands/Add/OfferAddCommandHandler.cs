@@ -25,7 +25,7 @@ namespace Application.Features.Offers.Commands.Add
                 CreatedOn = DateTimeOffset.Now,
                 CreatedByUserId = null,
             };
-            
+
             await _context.Offers.AddAsync(offer, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 

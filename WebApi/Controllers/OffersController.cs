@@ -1,12 +1,11 @@
 ﻿using Application.Features.Offers.Commands.Add;
 using Application.Features.Offers.Commands.Delete;
 using Application.Features.Offers.Commands.Update;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class OffersController : ApiControllerBase
     {
 

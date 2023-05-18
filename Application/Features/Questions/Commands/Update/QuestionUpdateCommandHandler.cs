@@ -19,7 +19,7 @@ namespace Application.Features.Questions.Commands.Update
 
             question.Title = request.Title;
             question.Description = request.Description;
-            question.Categories = request.Categories;
+            // question.Categories = request.Categories;
             question.MaxPrice = request.MaxPrice;
             question.MinPrice = request.MinPrice;
 

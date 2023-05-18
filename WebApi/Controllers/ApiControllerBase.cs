@@ -12,4 +12,4 @@ namespace WebApi.Controllers
         protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<ISender>();
 
     }
-}
+} 

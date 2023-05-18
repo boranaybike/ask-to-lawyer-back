@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Application.Common.Interfaces;
+using Domain.Identity;
+using System.Reflection;
 
 namespace Infrastructure.Persistence.Contexts
 {
@@ -13,5 +15,26 @@ namespace Infrastructure.Persistence.Contexts
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Question> Questions { get; set; }
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            // Configurations
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Ignores
+            modelBuilder.Ignore<User>();
+            modelBuilder.Ignore<Role>();
+            modelBuilder.Ignore<UserRole>();
+            modelBuilder.Ignore<RoleClaim>();
+            modelBuilder.Ignore<UserToken>();
+            modelBuilder.Ignore<UserClaim>();
+            modelBuilder.Ignore<UserLogin>();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
