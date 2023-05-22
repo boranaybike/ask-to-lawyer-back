@@ -2,15 +2,13 @@
 
 namespace Application.Features.Questions.Queries.GetById
 {
-    public class QuestionGetByIdQuery:IRequest<List<QuestionGetByIdDto>>
+    public class QuestionGetByIdQuery : IRequest<QuestionGetByIdDto>
     {
         public int Id { get; set; }
-        public bool IsDeleted { get; set; }
 
-        public QuestionGetByIdQuery(int id, bool isDeleted)
+        public QuestionGetByIdQuery(int id)
         {
             Id = id;
-            IsDeleted = isDeleted;
         }
     }
 }

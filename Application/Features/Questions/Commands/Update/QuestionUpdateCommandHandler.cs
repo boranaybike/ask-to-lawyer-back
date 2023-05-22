@@ -1,7 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Common;
 using MediatR;
-using System.Net;
 
 namespace Application.Features.Questions.Commands.Update
 {
