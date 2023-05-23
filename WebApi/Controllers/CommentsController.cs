@@ -15,7 +15,7 @@ namespace WebApi.Controllers
             return Ok(await Mediator.Send(new CommentGetByIdQuery(id)));
         }
 
-        [HttpGet]
+        [HttpPost("GetAll")]
         public async Task<IActionResult> GetAllAsync(CommentGetAllQuery query)
         {
             return Ok(await Mediator.Send(query));
