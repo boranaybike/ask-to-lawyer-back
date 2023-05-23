@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Application;
 using Infrastructure;
 
@@ -23,7 +21,24 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+ 
 }
+
+
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
+
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://localhost:8080")
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+});
+
 
 app.UseHttpsRedirection();
 

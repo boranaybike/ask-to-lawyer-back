@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost("GetAll")]
         public async Task<IActionResult> GetAllAsync(LawyerGetAllQuery query)
         {
             return Ok(await Mediator.Send(query));
