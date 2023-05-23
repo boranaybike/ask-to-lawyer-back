@@ -2,7 +2,6 @@
 using Domain.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 
 namespace Application.Features.Offers.Commands.Delete
 {

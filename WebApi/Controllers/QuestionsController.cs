@@ -1,6 +1,7 @@
 ﻿using Application.Features.Questions.Commands.Add;
 using Application.Features.Questions.Commands.Delete;
 using Application.Features.Questions.Commands.Update;
+using Application.Features.Questions.Queries.GetAll;
 using Application.Features.Questions.Queries.GetById;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,13 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            return Ok(await Mediator.Send(new QuestionGetByIdQuery(id, false)));
+            return Ok(await Mediator.Send(new QuestionGetByIdQuery(id)));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync(QuestionGetAllQuery query)
+        {
+            return Ok(await Mediator.Send(query));
         }
 
         [HttpDelete]
