@@ -1,13 +1,12 @@
 ﻿using MediatR;
 
-namespace Application.Features.Clients.Commands.Add
+namespace Application.Features.Auth.Commands.Register
 {
-    public class ClientAddCommand : IRequest<ClientRegisterDto>
+    public class AuthRegisterCommand:IRequest<AuthRegisterDto>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Phone { get; set; }
         public string Password { get; set; }
     }
 }

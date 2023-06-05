@@ -1,6 +1,5 @@
 ﻿using Application.Common.Interfaces;
 using MediatR;
-using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -29,7 +28,6 @@ namespace Application.Features.Questions.Queries.GetById
                 MaxPrice = question.MaxPrice,
                 MinPrice = question.MinPrice,
                 ClientId = question.ClientId,
-                ClientName = question.Client.FirstName,
                 IsDeleted = question.IsDeleted,
             };
 
