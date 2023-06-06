@@ -18,7 +18,7 @@ namespace WebApi.Controllers
             return Ok(await Mediator.Send(command));
         }
 
-        [HttpGet("{id}")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             return Ok(await Mediator.Send(new QuestionGetByIdQuery(id)));

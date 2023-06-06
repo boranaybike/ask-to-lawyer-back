@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Identity;
 using Infrastructure.Persistence.Contexts;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -42,9 +43,8 @@ namespace Infrastructure
                 .AddDefaultTokenProviders();
 
             //// Scoped Services
-            //services.AddScoped<IExcelService, ExcelManager>();
-            //services.AddScoped<IAuthenticationService, AuthenticationManager>();
-            //services.AddSingleton<IJwtService, JwtManager>();
+            services.AddScoped<IAuthenticationService, AuthenticationManager>();
+            services.AddSingleton<IJwtService, JwtManager>();
 
             //// Singleton Services
             //services.AddSingleton<ITwoFactorService, TwoFactorManager>();

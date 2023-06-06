@@ -34,6 +34,7 @@ namespace Application.Features.Lawyers.Commands.Update
             lawyer.ExperienceDate = request.ExperienceDate;
             lawyer.AverageResponseTime = request.AverageResponseTime;
             lawyer.AverageRate = request.AverageRate;
+            lawyer.Bar = request.Bar;
 
             await _context.SaveChangesAsync(cancellationToken);
 
