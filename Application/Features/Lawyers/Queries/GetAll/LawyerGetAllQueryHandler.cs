@@ -29,7 +29,9 @@ namespace Application.Features.Lawyers.Queries.GetAll
                     Education = lawyer.Education,
                     ExperienceDate = lawyer.ExperienceDate,
                     AverageResponseTime = lawyer.AverageResponseTime,
-                    AverageRate = lawyer.AverageRate
+                    AverageRate = lawyer.AverageRate,
+                    Bar = lawyer.Bar
+
                 })
                 .ToListAsync(cancellationToken);
 

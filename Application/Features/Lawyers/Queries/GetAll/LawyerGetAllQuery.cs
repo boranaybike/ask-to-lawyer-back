@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using System.Collections.Generic;
 
 namespace Application.Features.Lawyers.Queries.GetAll
 {

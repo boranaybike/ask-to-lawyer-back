@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Application.Features.Lawyers.Queries.GetAll;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -15,36 +16,23 @@ namespace Application.Features.Questions.Queries.GetAll
         }
         public async Task<List<QuestionGetAllDto>> Handle(QuestionGetAllQuery request, CancellationToken cancellationToken)
         {
-            var dbQuery = _context.Questions.AsQueryable();
 
-            var questions = await dbQuery.ToListAsync(cancellationToken);
-
-            var questionDtos = MapQuestionsToGetAllDtos(questions);
-
-            return questionDtos.ToList();
-
-        }
-
-        private IEnumerable<QuestionGetAllDto> MapQuestionsToGetAllDtos(List<Question> questions)
-        {
-            List<QuestionGetAllDto> questionGetAllDtos = new();
-
-            foreach (var question in questions)
-            {
-
-                yield return new QuestionGetAllDto()
+            var questions = await _context.Questions
+                .Select(question => new QuestionGetAllDto
                 {
                     Id = question.Id,
                     Title = question.Title,
                     Description = question.Description,
-                    //Categories = question.Categories,
                     MaxPrice = question.MaxPrice,
                     MinPrice = question.MinPrice,
-                    ClientId = question.ClientId,
                     ClientName = question.Client.FirstName,
-                    IsDeleted = question.IsDeleted,
-                };
-            }
+                    ClientId = question.ClientId,
+                })
+                .ToListAsync(cancellationToken);
+
+            return questions;
+
         }
+
     }
 }

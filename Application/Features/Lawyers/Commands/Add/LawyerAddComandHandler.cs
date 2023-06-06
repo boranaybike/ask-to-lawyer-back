@@ -24,11 +24,13 @@ namespace Application.Features.Lawyers.Commands.Add
                 Phone = request.Phone,
                 Password = request.Password,
                 BarNo = request.BarNo,
+                Bar= request.Bar,
                 Bio = request.Bio,
                 Education = request.Education,
                 ExperienceDate = request.ExperienceDate,
                 AverageResponseTime = request.AverageResponseTime,
                 AverageRate = request.AverageRate
+
             };
 
             await _context.Lawyers.AddAsync(lawyer, cancellationToken);

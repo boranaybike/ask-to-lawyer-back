@@ -25,7 +25,6 @@ namespace Application.Features.Offers.Queries.GetById
                 Id = offer.Id,
                 LawyerId = offer.LawyerId,
                 QuestionId = offer.QuestionId,
-                AnswerId = offer.AnswerId,
                 Price = offer.Price,
                 IsAccepted = offer.IsAccepted,
                 AcceptDate = offer.AcceptDate
