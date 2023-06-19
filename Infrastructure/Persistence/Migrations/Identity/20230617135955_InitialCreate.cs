@@ -89,15 +89,15 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "longtext", nullable: false)
+                    FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "longtext", nullable: false)
+                    LastName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
+                    Email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Phone = table.Column<string>(type: "longtext", nullable: false)
+                    Phone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "longtext", nullable: false)
+                    Password = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "longtext", nullable: true)
@@ -121,24 +121,28 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "longtext", nullable: false)
+                    FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "longtext", nullable: false)
+                    LastName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
+                    Email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Phone = table.Column<string>(type: "longtext", nullable: false)
+                    Phone = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "longtext", nullable: false)
+                    Password = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BarNo = table.Column<int>(type: "int", nullable: false),
+                    BarNo = table.Column<int>(type: "int", nullable: true),
+                    Bar = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Bio = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Education = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ExperienceDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
-                    AverageResponseTime = table.Column<int>(type: "int", nullable: false),
-                    AverageRate = table.Column<float>(type: "float", nullable: false),
+                    ExperienceDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
+                    Category = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AverageResponseTime = table.Column<int>(type: "int", nullable: true),
+                    AverageRate = table.Column<float>(type: "float", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -294,7 +298,9 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MaxPrice = table.Column<int>(type: "int", nullable: true),
                     MinPrice = table.Column<int>(type: "int", nullable: true),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    HasOffer = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    HasAnswer = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -312,8 +318,7 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         name: "FK_Questions_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -323,8 +328,8 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    LawyerId = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    LawyerId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -342,14 +347,12 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         name: "FK_Comments_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Comments_Lawyers_LawyerId",
                         column: x => x.LawyerId,
                         principalTable: "Lawyers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -359,12 +362,12 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    LawyerId = table.Column<int>(type: "int", nullable: false),
-                    QuestionId = table.Column<int>(type: "int", nullable: false),
-                    AnswerId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    IsAccepted = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    AcceptDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    LawyerId = table.Column<int>(type: "int", nullable: true),
+                    QuestionId = table.Column<int>(type: "int", nullable: true),
+                    AnswerId = table.Column<int>(type: "int", nullable: true),
+                    Price = table.Column<int>(type: "int", nullable: true),
+                    IsAccepted = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    AcceptDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -382,14 +385,12 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         name: "FK_Offers_Lawyers_LawyerId",
                         column: x => x.LawyerId,
                         principalTable: "Lawyers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Offers_Questions_QuestionId",
                         column: x => x.QuestionId,
                         principalTable: "Questions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -399,11 +400,13 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    MessageBody = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Date = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
-                    OfferAcceptDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
-                    OfferId = table.Column<int>(type: "int", nullable: false),
+                    OfferId = table.Column<int>(type: "int", nullable: true),
+                    ClientId = table.Column<int>(type: "int", nullable: true),
+                    LawyerId = table.Column<int>(type: "int", nullable: true),
+                    FromClient = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    FromLawyer = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -418,18 +421,37 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     table.PrimaryKey("PK_Answers", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Answers_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Answers_Lawyers_LawyerId",
+                        column: x => x.LawyerId,
+                        principalTable: "Lawyers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Answers_Offers_OfferId",
                         column: x => x.OfferId,
                         principalTable: "Offers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_ClientId",
+                table: "Answers",
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_IsDeleted",
                 table: "Answers",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_LawyerId",
+                table: "Answers",
+                column: "LawyerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_OfferId",

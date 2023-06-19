@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Configurations.Application
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
             // BarNo
-            builder.Property(x => x.BarNo).IsRequired();
+            builder.Property(x => x.BarNo).IsRequired(false);
 
             // Bio
             builder.Property(x => x.Bio).IsRequired(false);
@@ -24,10 +24,10 @@ namespace Infrastructure.Persistence.Configurations.Application
             builder.Property(x => x.Education).IsRequired(false);
 
             // AverageResponseTime
-            builder.Property(x => x.AverageResponseTime).IsRequired(true);
+            builder.Property(x => x.AverageResponseTime).IsRequired(false);
 
             // AverageRate
-            builder.Property(x => x.AverageRate).IsRequired();
+            builder.Property(x => x.AverageRate).IsRequired(false);
 
             // Relationships
             builder.HasMany(x => x.Comments)

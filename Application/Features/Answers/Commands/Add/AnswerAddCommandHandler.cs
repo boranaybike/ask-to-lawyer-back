@@ -18,10 +18,12 @@ namespace Application.Features.Answers.Commands.Add
         {
             var answer = new Answer
             {
-                Title = request.Title,
-                Date = request.Date,
-                OfferAcceptDate = request.OfferAcceptDate,
-                OfferId = request.OfferId
+                MessageBody = request.MessageBody,
+                ClientId = request.ClientId,
+                LawyerId = request.LawyerId,
+                OfferId = request.OfferId,
+                FromClient = request.FromClient,
+                FromLawyer = request.FromLawyer,
             };
 
             _context.Answers.Add(answer);

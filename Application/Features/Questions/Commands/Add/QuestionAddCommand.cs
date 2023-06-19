@@ -10,5 +10,9 @@ namespace Application.Features.Questions.Commands.Add
         public int? MaxPrice { get; set; }
         public int? MinPrice { get; set; }
         public int ClientId { get; set; }
+        public bool? HasOffer { get; set; }
+        public bool? HasAnswer { get; set; }
+
+
     }
 }

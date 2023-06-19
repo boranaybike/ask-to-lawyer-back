@@ -27,7 +27,6 @@ namespace Application.Features.Offers.Queries.GetById
                 QuestionId = offer.QuestionId,
                 Price = offer.Price,
                 IsAccepted = offer.IsAccepted,
-                AcceptDate = offer.AcceptDate
             };
 
             return offerDto;

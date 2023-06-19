@@ -18,9 +18,10 @@ namespace Application.Features.Questions.Commands.Update
 
             question.Title = request.Title;
             question.Description = request.Description;
-            // question.Categories = request.Categories;
             question.MaxPrice = request.MaxPrice;
             question.MinPrice = request.MinPrice;
+            question.HasAnswer = request.HasAnswer;
+            question.HasOffer = request.HasOffer;
 
             await _context.SaveChangesAsync(cancellationToken);
             return new Response<int>($"question successfully updated.", question.Id);

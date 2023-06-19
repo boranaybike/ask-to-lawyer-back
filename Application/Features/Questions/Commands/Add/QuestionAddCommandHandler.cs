@@ -26,7 +26,8 @@ namespace Application.Features.Questions.Commands.Add
                 IsDeleted = false,
                 CreatedOn = DateTimeOffset.Now,
                 CreatedByUserId = null,
-
+                HasAnswer = request.HasAnswer,
+                HasOffer = request.HasOffer,
             };
 
             await _context.Questions.AddAsync(question, cancellationToken);

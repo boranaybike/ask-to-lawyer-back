@@ -25,14 +25,14 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedByUserId")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<DateTimeOffset>("Date")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DeletedByUserId")
@@ -42,10 +42,24 @@ namespace Infrastructure.Persistence.Migrations.Identity
                     b.Property<DateTimeOffset?>("DeletedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool?>("FromClient")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("FromLawyer")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValueSql("0");
+
+                    b.Property<int?>("LawyerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MessageBody")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("ModifiedByUserId")
                         .HasMaxLength(100)
@@ -54,20 +68,16 @@ namespace Infrastructure.Persistence.Migrations.Identity
                     b.Property<DateTimeOffset?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTimeOffset>("OfferAcceptDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("OfferId")
+                    b.Property<int?>("OfferId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("LawyerId");
 
                     b.HasIndex("OfferId")
                         .IsUnique();
@@ -94,18 +104,15 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ModifiedByUserId")
@@ -115,11 +122,9 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -133,7 +138,7 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedByUserId")
@@ -155,7 +160,7 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValueSql("0");
 
-                    b.Property<int>("LawyerId")
+                    b.Property<int?>("LawyerId")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedByUserId")
@@ -182,16 +187,22 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<float>("AverageRate")
+                    b.Property<float?>("AverageRate")
                         .HasColumnType("float");
 
-                    b.Property<int>("AverageResponseTime")
+                    b.Property<int?>("AverageResponseTime")
                         .HasColumnType("int");
 
-                    b.Property<int>("BarNo")
+                    b.Property<string>("Bar")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("BarNo")
                         .HasColumnType("int");
 
                     b.Property<string>("Bio")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Category")
                         .HasColumnType("longtext");
 
                     b.Property<string>("CreatedByUserId")
@@ -210,21 +221,18 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .HasColumnType("longtext");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTimeOffset>("ExperienceDate")
+                    b.Property<DateTimeOffset?>("ExperienceDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ModifiedByUserId")
@@ -234,11 +242,9 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -252,10 +258,10 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTimeOffset>("AcceptDate")
+                    b.Property<DateTimeOffset?>("AcceptDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("AnswerId")
+                    b.Property<int?>("AnswerId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedByUserId")
@@ -272,7 +278,7 @@ namespace Infrastructure.Persistence.Migrations.Identity
                     b.Property<DateTimeOffset?>("DeletedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<bool>("IsAccepted")
+                    b.Property<bool?>("IsAccepted")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsDeleted")
@@ -280,7 +286,7 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValueSql("0");
 
-                    b.Property<int>("LawyerId")
+                    b.Property<int?>("LawyerId")
                         .HasColumnType("int");
 
                     b.Property<string>("ModifiedByUserId")
@@ -289,10 +295,10 @@ namespace Infrastructure.Persistence.Migrations.Identity
                     b.Property<DateTimeOffset?>("ModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Price")
+                    b.Property<int?>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuestionId")
+                    b.Property<int?>("QuestionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -312,7 +318,7 @@ namespace Infrastructure.Persistence.Migrations.Identity
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedByUserId")
@@ -332,6 +338,12 @@ namespace Infrastructure.Persistence.Migrations.Identity
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool?>("HasAnswer")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("HasOffer")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -603,11 +615,21 @@ namespace Infrastructure.Persistence.Migrations.Identity
 
             modelBuilder.Entity("Domain.Entities.Answer", b =>
                 {
+                    b.HasOne("Domain.Entities.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("Domain.Entities.Lawyer", "Lawyer")
+                        .WithMany()
+                        .HasForeignKey("LawyerId");
+
                     b.HasOne("Domain.Entities.Offer", "Offer")
                         .WithOne("Answer")
-                        .HasForeignKey("Domain.Entities.Answer", "OfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Domain.Entities.Answer", "OfferId");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Lawyer");
 
                     b.Navigation("Offer");
                 });
@@ -616,15 +638,11 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     b.HasOne("Domain.Entities.Client", "Client")
                         .WithMany("Comments")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.HasOne("Domain.Entities.Lawyer", "Lawyer")
                         .WithMany("Comments")
-                        .HasForeignKey("LawyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LawyerId");
 
                     b.Navigation("Client");
 
@@ -635,15 +653,11 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     b.HasOne("Domain.Entities.Lawyer", "Lawyer")
                         .WithMany("Offers")
-                        .HasForeignKey("LawyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LawyerId");
 
                     b.HasOne("Domain.Entities.Question", "Question")
                         .WithMany("Offers")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("QuestionId");
 
                     b.Navigation("Lawyer");
 
@@ -654,9 +668,7 @@ namespace Infrastructure.Persistence.Migrations.Identity
                 {
                     b.HasOne("Domain.Entities.Client", "Client")
                         .WithMany("Questions")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.Navigation("Client");
                 });

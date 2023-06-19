@@ -8,8 +8,11 @@ namespace Application.Features.Questions.Commands.Update
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<string> Categories { get; set; }
         public int? MaxPrice { get; set; }
         public int? MinPrice { get; set; }
+        public int ClientId { get; set; }
+        public bool? HasOffer { get; set; }
+        public bool? HasAnswer { get; set; }
+
     }
 }

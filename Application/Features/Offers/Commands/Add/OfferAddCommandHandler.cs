@@ -20,6 +20,7 @@ namespace Application.Features.Offers.Commands.Add
                 AnswerId = request.AnswerId,
                 QuestionId = request.QuestionId,
                 Price = request.Price,
+                IsAccepted = request.IsAccepted,
                 AcceptDate = DateTimeOffset.Now,
                 IsDeleted = false,
                 CreatedOn = DateTimeOffset.Now,

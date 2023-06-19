@@ -18,7 +18,7 @@ namespace Infrastructure.Services
             _jwtSettings = jwtSettingsOption.Value;
         }
 
-        public JwtDto Generate(int userId, string email, string firstName, string lastName, List<string>? roles = null)
+        public JwtDto Generate(int userId, string email, string firstName, string lastName, string role)
         {
             var claims = new List<Claim>()
             {
@@ -27,6 +27,7 @@ namespace Infrastructure.Services
                 new Claim(JwtRegisteredClaimNames.Sub,userId.ToString()),
                 new Claim(JwtRegisteredClaimNames.GivenName,firstName),
                 new Claim(JwtRegisteredClaimNames.FamilyName,lastName),
+                new Claim("role", role),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
             };
 

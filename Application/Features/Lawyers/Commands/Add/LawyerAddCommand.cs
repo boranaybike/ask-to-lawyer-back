@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Features.Lawyers.Commands.Add
 {
-    public class LawyerAddCommand : IRequest<Response<int>>
+    public class LawyerAddCommand : IRequest<LawyerRegisterDto>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
