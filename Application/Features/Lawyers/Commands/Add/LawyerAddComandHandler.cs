@@ -1,20 +1,24 @@
 ﻿using Application.Common.Interfaces;
+using Application.Features.Clients.Commands.Add;
 using Domain.Common;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Lawyers.Commands.Add
 {
-    public class LawyerAddCommandHandler : IRequestHandler<LawyerAddCommand, Response<int>>
+    public class LawyerAddCommandHandler : IRequestHandler<LawyerAddCommand, LawyerRegisterDto>
     {
         private readonly IApplicationDbContext _context;
+        private readonly IJwtService _jwtService;
 
-        public LawyerAddCommandHandler(IApplicationDbContext context)
+        public LawyerAddCommandHandler(IApplicationDbContext context, IJwtService jwtService)
         {
             _context = context;
+            _jwtService = jwtService;
+
         }
 
-        public async Task<Response<int>> Handle(LawyerAddCommand request, CancellationToken cancellationToken)
+        public async Task<LawyerRegisterDto> Handle(LawyerAddCommand request, CancellationToken cancellationToken)
         {
             var lawyer = new Lawyer
             {
@@ -33,10 +37,14 @@ namespace Application.Features.Lawyers.Commands.Add
 
             };
 
+            var fullName = lawyer.FirstName + lawyer.LastName;
+
+
             await _context.Lawyers.AddAsync(lawyer, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return new Response<int>("Lawyer added successfully.", lawyer.Id);
+            var jwtDto = _jwtService.Generate(lawyer.Id, request.Email, request.FirstName, request.LastName, "lawyer");
+            return new LawyerRegisterDto(request.Email, fullName, jwtDto.AccessToken);
         }
     }
 }

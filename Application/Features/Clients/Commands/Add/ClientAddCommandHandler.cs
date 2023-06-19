@@ -30,7 +30,7 @@ namespace Application.Features.Clients.Commands.Add
             _context.Clients.Add(client);
             await _context.SaveChangesAsync(cancellationToken);
 
-            var jwtDto = _jwtService.Generate(client.Id, request.Email, request.FirstName, request.LastName);
+            var jwtDto = _jwtService.Generate(client.Id, request.Email, request.FirstName, request.LastName, "client");
             return new ClientRegisterDto(request.Email, fullName, jwtDto.AccessToken);
         }
     }

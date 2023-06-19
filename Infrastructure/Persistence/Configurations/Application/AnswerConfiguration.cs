@@ -12,15 +12,9 @@ namespace Infrastructure.Persistence.Configurations.Application
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            // Title
-            builder.Property(x => x.Title).IsRequired();
-            builder.Property(x => x.Title).HasMaxLength(100);
-
-            // Date
-            builder.Property(x => x.Date).IsRequired();
-
-            // OfferAcceptDate
-            builder.Property(x => x.OfferAcceptDate).IsRequired();
+            // MessageBody
+            builder.Property(x => x.MessageBody).IsRequired();
+            builder.Property(x => x.MessageBody).HasMaxLength(100);
 
             // Common Fields
 

@@ -15,7 +15,7 @@ namespace Application.Features.Offers.Queries.GetAll
 
         public async Task<List<OfferGetAllDto>> Handle(OfferGetAllQuery istek, CancellationToken cancellationToken)
         {
-            var teklifler = await _context.Offers.ToListAsync(cancellationToken);
+            var teklifler = await _context.Offers.Include(o => o.Lawyer).ToListAsync(cancellationToken);
 
             var OfferDtoList = teklifler.Select(o => new OfferGetAllDto
             {
@@ -24,7 +24,10 @@ namespace Application.Features.Offers.Queries.GetAll
                 QuestionId = o.QuestionId,
                 Price = o.Price,
                 IsAccepted = o.IsAccepted,
-                AcceptDate = o.AcceptDate
+                LawyerFirstName = o.Lawyer?.FirstName,
+                LawyerLastName = o.Lawyer?.LastName,
+                LawyerBar = o.Lawyer?.Bar
+
             }).ToList();
 
             return OfferDtoList;

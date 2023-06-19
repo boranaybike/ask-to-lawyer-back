@@ -18,5 +18,7 @@ namespace Application.Features.Lawyers.Commands.Update
         public DateTimeOffset ExperienceDate { get; set; }
         public int AverageResponseTime { get; set; }
         public float AverageRate { get; set; }
+        public string? Category { get; set; }
+
     }
 }

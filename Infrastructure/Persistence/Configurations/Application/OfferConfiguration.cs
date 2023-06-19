@@ -9,16 +9,15 @@ namespace Infrastructure.Persistence.Configurations.Application
         public void Configure(EntityTypeBuilder<Offer> builder)
         {
 
-            //Category kaldı!!(list olduğu için)
             // Id
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
             // Price
-            builder.Property(x => x.Price).IsRequired();
+            builder.Property(x => x.Price).IsRequired(false);
 
             // IsAccepted
-            builder.Property(x => x.IsAccepted).IsRequired();
+            builder.Property(x => x.IsAccepted).IsRequired(false);
 
             // Common Fields
 

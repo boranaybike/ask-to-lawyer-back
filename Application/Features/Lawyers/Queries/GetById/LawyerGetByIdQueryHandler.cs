@@ -35,7 +35,8 @@ namespace Application.Features.Lawyers.Queries.GetById
                 ExperienceDate = lawyer.ExperienceDate,
                 AverageResponseTime = lawyer.AverageResponseTime,
                 AverageRate = lawyer.AverageRate,
-                Bar = lawyer.Bar
+                Bar = lawyer.Bar,
+                Category = lawyer.Category
             };
 
             return lawyerdDto;

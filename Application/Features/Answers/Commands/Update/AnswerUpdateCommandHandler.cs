@@ -19,12 +19,7 @@ namespace Application.Features.Answers.Commands.Update
 
             if (answer == null)
                 throw new Exception($"Answer with ID '{request.Id}' not found.");
-
-            // Update answer properties
-            answer.Title = request.Title;
-            answer.Date = request.Date;
-            answer.OfferAcceptDate = request.OfferAcceptDate;
-
+            
             await _context.SaveChangesAsync(cancellationToken);
 
             return new Response<int>("Answer updated successfully.", answer.Id);

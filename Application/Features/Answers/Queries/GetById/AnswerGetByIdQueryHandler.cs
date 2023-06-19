@@ -20,10 +20,12 @@ namespace Application.Features.Answers.Queries.GetById
                 .Select(a => new AnswerGetByIdDto
                 {
                     Id = a.Id,
-                    Title = a.Title,
-                    Date = a.Date,
-                    OfferAcceptDate = a.OfferAcceptDate,
-                    OfferId = a.OfferId
+                    ClientId = a.ClientId,
+                    LawyerId = a.LawyerId,
+                    MessageBody = a.MessageBody,
+                    OfferId = a.OfferId,
+                    FromClient = a.FromClient,
+                    FromLawyer = a.FromLawyer
                 })
                 .FirstOrDefaultAsync(cancellationToken);
 

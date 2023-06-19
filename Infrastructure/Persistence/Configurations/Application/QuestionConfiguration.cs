@@ -9,7 +9,6 @@ namespace Infrastructure.Persistence.Configurations.Application
         public void Configure(EntityTypeBuilder<Question> builder)
         {
 
-            //Category kaldı!!(list olduğu için)
             // Id
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
